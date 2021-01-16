@@ -5,7 +5,17 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="signup-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{!! route('create') !!}" method="post">
+                        @csrf
                         <h2>Register</h2>
                         <p class="hint-text">Create your account. It's free and only takes a minute.</p>
                         <div class="form-group">
@@ -15,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                            <input type="text" class="form-control" name="email" placeholder="Email" required="required">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Password" required="required">

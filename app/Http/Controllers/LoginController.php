@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
+
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect()->route('personal');
 
@@ -25,7 +26,7 @@ class LoginController extends Controller
 
     public function personal()
     {
-        return view('admin_panel.index');
+        return view('personal.index');
     }
 
     public function logout()

@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'LoginController@index');
+Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/login', 'LoginController@login')->name('attempt');
+Route::get('/logout','LoginController@logout');
 Route::get('/create', 'UserController@index');
 Route::post('/create', 'UserController@create')->name('create');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/personal', 'LoginController@personal')->name('personal');
+});
+

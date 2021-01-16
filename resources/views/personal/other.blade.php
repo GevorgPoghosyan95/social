@@ -10,7 +10,7 @@
             @include('personal.layouts.left')
             <!-- left wrapper end -->
                 <!-- middle wrapper start -->
-            @include('personal.layouts.middle',['friends' => $friends])
+            @include('personal.layouts.otherProfile.middle',['friends' => $friends])
             <!-- middle wrapper end -->
             </div>
         </div>

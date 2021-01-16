@@ -64,23 +64,3 @@
         </div>
     </div>
 </div>
-<script>
-    function showFriendList(id) {
-        $.post('{{ route('showFriends') }}', {
-            id: id,
-            _token: '{{ csrf_token() }}'
-        }, function (response) {
-            let html = '';
-            $.each(JSON.parse(response), function (key, value) {
-                html += `<a href="/showProfile/${value.id}"><div class="friends d-flex align-items-center">
-                            <img class="img-xs rounded-circle"
-                                 src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                            <div class="ml-2">
-                                <p>${value.name} ${value.surname}</p>
-                            </div>
-                        </div></a>`
-            })
-            $('.col-md-8.col-xl-6.middle-wrapper').html(html)
-        });
-    }
-</script>

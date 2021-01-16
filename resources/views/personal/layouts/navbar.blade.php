@@ -41,44 +41,4 @@
     </div>
 </nav>
 
-<script>
-    function sendRequest(status, sender_id, receiver_id) {
-        $.post('{{ route('friendRequest') }}', {
-            status: status,
-            sender_id: sender_id,
-            receiver_id: receiver_id,
-            _token: '{{ csrf_token() }}'
-        }, function (response) {
-            if (response.status == 'ok') {
-                window.location.reload()
-            }
-        });
-    }
 
-
-    $(document).ready(function () {
-        $('input[name="people"]').keyup(function () {
-            if ($(this).val().length > 2) {
-                $.post('{{ route('find') }}', {
-                    name: $(this).val(),
-                    _token: '{{ csrf_token() }}'
-                }, function (response) {
-                    let data = JSON.parse(response)
-                    let source = [];
-                    $.each(data, function (key, person) {
-                        source.push({
-                            label: person.name + ' ' + person.surname,
-                            link: "/showProfile/" + person.id
-                        })
-                        $('#autocomplete').autocomplete({
-                            source: source,
-                            select: function (event, ui) {
-                                window.location.href = ui.item.link;
-                            }
-                        });
-                    })
-                });
-            }
-        })
-    })
-</script>

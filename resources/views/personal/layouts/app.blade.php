@@ -5,6 +5,7 @@
     <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
     <title>social network user profile example - Bootdey.com</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script
         src="/js/jquery-ui.min.js"
@@ -15,6 +16,7 @@
     <link href="/css/personalPage.css" rel="stylesheet">
     <link href="/css/jquery-ui.css" rel="stylesheet">
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/cover.js"></script>
 </head>
 @yield('body')
 </html>

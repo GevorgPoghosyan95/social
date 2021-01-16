@@ -217,6 +217,7 @@ img {
 .friends {
     border: 1px solid #1b1e21;
     height: 70px;
+    width:500px;
 }
 
 .friends:hover {

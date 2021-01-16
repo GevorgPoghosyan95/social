@@ -24,5 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/showProfile/{userID}', 'UserController@showProfile');
     Route::post('/friendRequest','UserController@friendRequest')->name('friendRequest');
     Route::post('/showFriends','UserController@showFriends')->name('showFriends');
+    Route::resource('posts','PostController');
 });
 

@@ -1,4 +1,5 @@
-<div class="row">
+<div class="col-md-8 col-xl-6 middle-wrapper">
+    <div class="row" id="posts">
         <div class="col-md-12 grid-margin">
             <div class="card rounded">
                 <div class="card-header">
@@ -225,3 +226,17 @@
             </div>
         </div>
     </div>
+    <div class="row" id="friends">
+        @foreach(json_decode($friends) as $friend)
+            <a href="/showProfile/{!! $friend->id !!}" style="padding-top: 10px">
+                <div class="friends d-flex align-items-center">
+                    <img class="img-xs rounded-circle"
+                         src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                    <div class="ml-2">
+                        <p>{!! $friend->name.' '.$friend->surname !!}</p>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+    </div>
+</div>

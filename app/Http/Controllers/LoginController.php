@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Managers\UserManager;
+use App\Post;
 use Illuminate\Http\Request;
 use Auth;
 
 class LoginController extends Controller
 {
+    public $userManager;
+    public function __construct(UserManager $userManager)
+    {
+        $this->userManager = $userManager;
+    }
+
     public function index()
     {
         return view('login.index');
@@ -26,7 +34,9 @@ class LoginController extends Controller
 
     public function personal()
     {
-        return view('personal.index');
+        $friends = $this->userManager->showFriends(Auth::id());
+        $posts = Auth::user()->posts;
+        return view('personal.index',compact('friends','posts'));
     }
 
     public function logout()

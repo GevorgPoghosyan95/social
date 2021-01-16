@@ -55,4 +55,8 @@ class User extends Authenticatable
             })->where('status','approved')->get();
         return $data;
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

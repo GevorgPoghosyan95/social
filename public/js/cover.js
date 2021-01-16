@@ -1,20 +1,17 @@
+
+
 function showFriendList(id) {
-    $.post('/showFriends', {
-        id: id,
-        _token: $('meta[name="csrf-token"]').attr('content')
-    }, function (response) {
-        let html = '';
-        $.each(JSON.parse(response), function (key, value) {
-            html += `<a href="/showProfile/${value.id}"><div class="friends d-flex align-items-center">
-                            <img class="img-xs rounded-circle"
-                                 src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                            <div class="ml-2">
-                                <p>${value.name} ${value.surname}</p>
-                            </div>
-                        </div></a><br>`
-        })
-        $('.col-md-8.col-xl-6.middle-wrapper').html(html)
-    });
+    $('#posts').hide()
+    $('.friendsClass').addClass('active')
+    $('.postClass').removeClass('active')
+    $('#friends').show();
+}
+
+function showPosts(id) {
+    $('#friends').hide()
+    $('.postClass').addClass('active')
+    $('.friendsClass').removeClass('active')
+    $('#posts').show();
 }
 
 
@@ -33,6 +30,10 @@ function sendRequest(status, sender_id, receiver_id) {
 
 
 $(document).ready(function () {
+    $('#friends').hide()
+    $('#newPost').click(function () {
+        $('#myModal').modal('show');
+    })
     $('input[name="people"]').keyup(function () {
         if ($(this).val().length > 2) {
             $.post('/find', {
@@ -57,3 +58,4 @@ $(document).ready(function () {
         }
     })
 })
+

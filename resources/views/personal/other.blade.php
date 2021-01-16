@@ -10,13 +10,8 @@
             @include('personal.layouts.left')
             <!-- left wrapper end -->
                 <!-- middle wrapper start -->
-                <div class="col-md-8 col-xl-6 middle-wrapper">
-                    @include('personal.layouts.middle')
-                </div>
-                <!-- middle wrapper end -->
-                <!-- right wrapper start -->
-            {{--            @include('personal.layouts.right')--}}
-            <!-- right wrapper end -->
+            @include('personal.layouts.middle',['friends' => $friends])
+            <!-- middle wrapper end -->
             </div>
         </div>
     </div>

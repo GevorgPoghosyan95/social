@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Managers\UserManager;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public $userManager;
+    public function __construct(UserManager $userManager)
+    {
+        $this->userManager = $userManager;
+    }
+
     public function index()
     {
         return view('login.create');
@@ -43,11 +50,12 @@ class UserController extends Controller
     public function showProfile($userID)
     {
         $user = User::find($userID);
+        $friends = $this->userManager->showFriends($userID);
         if ($user == Auth::user()) {
             return redirect()->route('personal');
         }
         if ($user) {
-            return view('personal.other', compact('user'));
+            return view('personal.other', compact('user','friends'));
         } else {
             return view('personal.not_found');
         }
@@ -96,19 +104,5 @@ class UserController extends Controller
             ->where('status', 'pending')->update(['status' => $status]);
     }
 
-    public function showFriends(Request $request){
-        $data = User::getFriends($request->get('id'));
-        $friends = [];
-        foreach($data as $friend){
-            if($friend->sender_id == $request->get('id')){
-                $friends[] = User::find($friend->receiver_id);
-                continue;
-            }elseif($friend->receiver_id == $request->get('id')){
-                $friends[] = User::find($friend->sender_id);
-                continue;
-            }
-        }
-        return json_encode($friends);
-    }
 
 }

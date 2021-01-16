@@ -1,5 +1,4 @@
-<div class="col-md-8 col-xl-6 middle-wrapper">
-    <div class="row">
+<div class="row">
         <div class="col-md-12 grid-margin">
             <div class="card rounded">
                 <div class="card-header">
@@ -226,4 +225,3 @@
             </div>
         </div>
     </div>
-</div>

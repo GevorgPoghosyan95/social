@@ -12,12 +12,12 @@
                         <span class="profile-name">{!! $user->name.' '.$user->surname !!}</span>
                     </div>
                     <div class="d-none d-md-block">
-                        @if(Auth::user()->friendRequests()->where('receiver_id',$user->id)->where('status','pending')->orWhere('status','approved')->count())
+                        @if(userHasFriendRequest($user))
                             <button class="addFriend btn btn-primary cancel"
                                     onclick="sendRequest('cancel',{{Auth::user()->id}},{{$user->id}})">
                                 </svg> Cancel
                             </button>
-                        @elseif(Auth::user()->friendRequests()->where('receiver_id',$user->id)->where('status','pending')->orWhere('status','rejected')->count() || Auth::user()->receivedRequests()->where('id',$user->id)->count())
+                        @elseif(userHasRejectedRequest($user))
                         @else
                             <button class="addFriend btn btn-primary" onclick="sendRequest('pending',{{Auth::user()->id}},{{$user->id}})">
                                 </svg> Add Friend +

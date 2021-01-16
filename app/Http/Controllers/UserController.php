@@ -95,4 +95,20 @@ class UserController extends Controller
             ->where('receiver_id', $request->get('receiver_id'))
             ->where('status', 'pending')->update(['status' => $status]);
     }
+
+    public function showFriends(Request $request){
+        $data = User::getFriends($request->get('id'));
+        $friends = [];
+        foreach($data as $friend){
+            if($friend->sender_id == $request->get('id')){
+                $friends[] = User::find($friend->receiver_id);
+                continue;
+            }elseif($friend->receiver_id == $request->get('id')){
+                $friends[] = User::find($friend->sender_id);
+                continue;
+            }
+        }
+        return json_encode($friends);
+    }
+
 }

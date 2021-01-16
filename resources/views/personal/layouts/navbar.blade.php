@@ -1,34 +1,3 @@
-<style>
-    .autocomplete-suggestions {
-        border: 1px solid #999;
-        background: #FFF;
-        overflow: auto;
-    }
-
-    .autocomplete-suggestion {
-        padding: 2px 5px;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .autocomplete-selected {
-        background: #F0F0F0;
-    }
-
-    .autocomplete-suggestions strong {
-        font-weight: normal;
-        color: #3399FF;
-    }
-
-    .autocomplete-group {
-        padding: 2px 5px;
-    }
-
-    .autocomplete-group strong {
-        display: block;
-        border-bottom: 1px solid #000;
-    }
-</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
             aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"><span
@@ -67,7 +36,7 @@
             </div>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input type="text" name="people" id="autocomplete" value=""/>
+            <input type="text" name="people" id="autocomplete" value="" placeholder="Search..."/>
         </form>
     </div>
 </nav>

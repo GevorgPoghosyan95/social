@@ -10,10 +10,12 @@
             @include('personal.layouts.left')
             <!-- left wrapper end -->
                 <!-- middle wrapper start -->
-            @include('personal.layouts.middle')
-            <!-- middle wrapper end -->
+                <div class="col-md-8 col-xl-6 middle-wrapper">
+                    @include('personal.layouts.middle')
+                </div>
+                <!-- middle wrapper end -->
                 <!-- right wrapper start -->
-{{--            @include('personal.layouts.right')--}}
+            {{--            @include('personal.layouts.right')--}}
             <!-- right wrapper end -->
             </div>
         </div>

@@ -48,11 +48,11 @@ class User extends Authenticatable
     }
 
     static function getFriends($id){
-        $friends = DB::table('relations')
+        $data = DB::table('relations')
             ->where(function ($query) use($id) {
                 $query->where('sender_id',$id)
                     ->orWhere('receiver_id',$id);
             })->where('status','approved')->get();
-        return $friends;
+        return $data;
     }
 }

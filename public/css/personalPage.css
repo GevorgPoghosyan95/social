@@ -214,3 +214,12 @@ img {
 .cancel:hover {
     background-color: darkred;
 }
+.friends {
+    border: 1px solid #1b1e21;
+    height: 70px;
+}
+
+.friends:hover {
+    background-color: lightcyan;
+    text-decoration: none;
+}

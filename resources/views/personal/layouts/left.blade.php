@@ -48,23 +48,22 @@
                     </div>
                 </div>
             </div>
-            <p>Hi! I'm Amiah the Senior UI Designer at Vibrant. We hope you enjoy the design and quality
-                of Social.</p>
+            <p>Hi! I'm {!! Auth::user()->name.' '.Auth::user()->surname !!}</p>
             <div class="mt-3">
                 <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
-                <p class="text-muted">November 15, 2015</p>
+                <p class="text-muted">{!! date('d-m-Y',strtotime(Auth::user()->created_at)) !!}</p>
             </div>
             <div class="mt-3">
                 <label class="tx-11 font-weight-bold mb-0 text-uppercase">Lives:</label>
-                <p class="text-muted">New York, USA</p>
+                <p class="text-muted">Yerevan, Armenia</p>
             </div>
             <div class="mt-3">
                 <label class="tx-11 font-weight-bold mb-0 text-uppercase">Email:</label>
-                <p class="text-muted">me@nobleui.com</p>
+                <p class="text-muted">{!! Auth::user()->email !!}</p>
             </div>
             <div class="mt-3">
                 <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
-                <p class="text-muted">www.nobleui.com</p>
+                <p class="text-muted">www.social.com</p>
             </div>
             <div class="mt-3 d-flex social-links">
                 <a href="javascript:;"

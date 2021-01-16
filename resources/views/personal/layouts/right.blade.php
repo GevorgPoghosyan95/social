@@ -64,9 +64,7 @@
                             </div>
                             <div class="col-md-4">
                                 <figure class="mb-0">
-                                    <img class="img-fluid"
-                                         src="https://bootdey.com/img/Content/avatar/avatar9.png"
-                                         alt="">
+
                                 </figure>
                             </div>
                         </div>

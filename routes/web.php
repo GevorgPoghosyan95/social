@@ -20,5 +20,8 @@ Route::get('/create', 'UserController@index');
 Route::post('/create', 'UserController@create')->name('create');
 Route::middleware(['auth'])->group(function () {
     Route::get('/personal', 'LoginController@personal')->name('personal');
+    Route::post('/find', 'UserController@find')->name('find');
+    Route::get('/showProfile/{userID}', 'UserController@showProfile');
+    Route::post('/friendRequest','UserController@friendRequest')->name('friendRequest');
 });
 

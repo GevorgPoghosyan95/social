@@ -207,3 +207,10 @@ img {
     border: 1px solid #f2f4f9;
     border-radius: 0.25rem;
 }
+
+.cancel {
+    background-color: darkred;
+}
+.cancel:hover {
+    background-color: darkred;
+}

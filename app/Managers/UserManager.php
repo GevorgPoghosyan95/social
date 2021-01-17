@@ -8,6 +8,20 @@ use Auth;
 
 class UserManager {
 
+    /**
+     * @param Request $request
+     * Create user and authenticate
+     */
+    public function create(Request $request){
+        $user = User::create([
+            'name' => $request->get('name'),
+            'surname' => $request->get('surname'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password'))
+        ]);
+        Auth::login($user);
+    }
+
     public function showFriends($id){
         $data = User::getFriends($id);
         $friends = [];
@@ -21,5 +35,16 @@ class UserManager {
             }
         }
         return json_encode($friends);
+    }
+
+    public function find(Request $request){
+        $searchTerms = $parts = preg_split('/\s+/', $request->get('name'));
+        $users = User::where(function ($query) use ($searchTerms) {
+            foreach ($searchTerms as $searchTerm) {
+                $query->where('name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('surname', 'LIKE', "%{$searchTerm}%");
+            }
+        })->get();
+        return $users->toJson(JSON_PRETTY_PRINT);
     }
 }

@@ -17,34 +17,25 @@ class UserController extends Controller
         $this->userManager = $userManager;
     }
 
+    /**
+     * show register users page
+     */
+
     public function index()
     {
         return view('login.create');
     }
 
+
     public function create(CreateUserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->get('name'),
-            'surname' => $request->get('surname'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password'))
-        ]);
-        Auth::login($user);
-
+        $this->userManager->create($request);
         return redirect()->route('personal');
     }
 
     public function find(Request $request)
     {
-        $searchTerms = $parts = preg_split('/\s+/', $request->get('name'));
-        $users = User::where(function ($query) use ($searchTerms) {
-            foreach ($searchTerms as $searchTerm) {
-                $query->where('name', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('surname', 'LIKE', "%{$searchTerm}%");
-            }
-        })->get();
-        return $users->toJson(JSON_PRETTY_PRINT);
+        return $this->userManager->find($request);
     }
 
     public function showProfile($userID)
@@ -57,7 +48,7 @@ class UserController extends Controller
         if ($user) {
             return view('personal.other', compact('user','friends'));
         } else {
-            return view('personal.not_found');
+            return abort('404');
         }
     }
 

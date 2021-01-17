@@ -1,4 +1,3 @@
-<script src="/js/tinymce.min.js"></script>
 <form action="{!! route('posts.store') !!}" method="post">
     @csrf
     <div class="modal fade" id="myModal" role="dialog">

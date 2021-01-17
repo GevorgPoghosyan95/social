@@ -6,6 +6,8 @@
     <!--  All snippets are MIT license http://bootdey.com/license -->
     <title>social network user profile example - Bootdey.com</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="/js/tinymce.min.js"></script>
+    <script src="/js/popper.min.js"></script>
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script
         src="/js/jquery-ui.min.js"

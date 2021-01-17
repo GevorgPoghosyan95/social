@@ -54,45 +54,12 @@ class UserController extends Controller
 
     public function friendRequest(Request $request)
     {
-        switch ($request->get('status')) {
-            case 'pending':
-                DB::table('relations')->insert([
-                    'sender_id'=>$request->get('sender_id'),
-                    'receiver_id'=>$request->get('receiver_id'),
-                    'status' => $request->get('status'),
-                    "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
-                    "updated_at" => \Carbon\Carbon::now(),  # new \Datetime()
-                ]);
-                break;
-            case 'cancel':
-                DB::table('relations')
-                    ->where(function ($query) use ($request) {
-                        $query->where('sender_id', $request->get('sender_id'))
-                            ->where('receiver_id', $request->get('receiver_id'));
-                    })->orwhere(function ($query) use ($request) {
-                        $query->where('receiver_id', $request->get('sender_id'))
-                            ->where('sender_id', $request->get('receiver_id'));
-                            })
-                    ->delete();
-                break;
-            case 'approved':
-                $this->updateRelationStatus($request, $request->get('status'));
-                break;
-            case 'rejected':
-                $this->updateRelationStatus($request, $request->get('status'));
-
-        }
-//
-        return response()->json(['status' => 'ok']);
+        return $this->userManager->friendRequest($request);
     }
 
     public function updateRelationStatus($request, $status)
     {
-
-        DB::table('relations')
-            ->where('sender_id', $request->get('sender_id'))
-            ->where('receiver_id', $request->get('receiver_id'))
-            ->where('status', 'pending')->update(['status' => $status]);
+        return $this->userManager->updateRelationStatus($request,$status);
     }
 
 

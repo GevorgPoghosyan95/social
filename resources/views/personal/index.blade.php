@@ -1,4 +1,5 @@
 @extends('personal.layouts.app')
+
 @section('body')
     <body>
     @include('personal.layouts.navbar')

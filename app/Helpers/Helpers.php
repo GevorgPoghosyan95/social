@@ -18,7 +18,7 @@ function userHasRejectedRequest($user)
 
 function usersAreFriends($user)
 {
-    $check1 = DB::table('relations')
+    return DB::table('relations')
         ->where(function ($query) use ($user) {
         $query->where('sender_id', $user->id)
             ->where('receiver_id', Auth::id())
@@ -27,10 +27,5 @@ function usersAreFriends($user)
         $query->where('sender_id', Auth::id())
             ->where('receiver_id', $user->id)
             ->where('status', 'approved');
-    })->count();
-    if($check1){
-        return true;
-    }else{
-        return false;
-    }
+    })->exists();
 }

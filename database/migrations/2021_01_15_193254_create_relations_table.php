@@ -31,6 +31,10 @@ class CreateRelationsTable extends Migration
      */
     public function down()
     {
+        Schema::table('relations', function (Blueprint $table) {
+            $table->dropForeign(['sender_id']);
+            $table->dropForeign(['receiver_id']);
+        });
         Schema::dropIfExists('relations');
     }
 }

@@ -38,6 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
 
     public function friendRequests(){
         return $this->belongsToMany(User::class, 'relations','sender_id','receiver_id');

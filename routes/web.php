@@ -12,16 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function (){
-    return redirect()->route('login');
-});
-Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@login')->name('attempt');
 Route::get('/logout','LoginController@logout');
 Route::get('/create', 'UserController@index');
 Route::post('/create', 'UserController@create')->name('create');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/personal', 'LoginController@personal')->name('personal');
+    Route::get('/feed', 'LoginController@personal')->name('personal');
     Route::post('/find', 'UserController@find')->name('find');
     Route::post('/findFriends', 'UserController@findFriends');
     Route::get('/showProfile/{userID}', 'UserController@showProfile');

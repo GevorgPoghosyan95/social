@@ -179,17 +179,19 @@
         @endif
 
     </div>
-    <div class="row" id="friends">
-        @foreach(json_decode($friends) as $friend)
-            <a href="/showProfile/{!! $friend->id !!}" style="padding-top: 10px">
-                <div class="friends d-flex align-items-center">
-                    <img class="img-xs rounded-circle"
-                         src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                    <div class="ml-2">
-                        <p>{!! $friend->name.' '.$friend->surname !!}</p>
+    <div class="friendList">
+        <div class="row" id="friends">
+            @foreach(json_decode($friends) as $friend)
+                <a href="/showProfile/{!! $friend->id !!}" style="padding-top: 10px">
+                    <div class="friends d-flex align-items-center">
+                        <img class="img-xs rounded-circle"
+                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                        <div class="ml-2">
+                            <p>{!! $friend->name.' '.$friend->surname !!}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        @endforeach
+                </a>
+            @endforeach
+        </div>
     </div>
 </div>

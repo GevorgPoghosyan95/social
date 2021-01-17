@@ -1,6 +1,7 @@
 <?php
 namespace App\Managers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,13 +14,8 @@ class UserManager {
      * @param Request $request
      * Create user and authenticate
      */
-    public function create(Request $request){
-        $user = User::create([
-            'name' => $request->get('name'),
-            'surname' => $request->get('surname'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password'))
-        ]);
+    public function create(CreateUserRequest $request){
+        $user = User::create($request->validated());
         Auth::login($user);
     }
 

@@ -62,5 +62,10 @@ class UserController extends Controller
         return $this->userManager->updateRelationStatus($request,$status);
     }
 
+    public function findFriends(Request $request){
+        $friends = $this->userManager->findFriends($request);
+        return $friends;
+    }
+
 
 }

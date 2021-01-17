@@ -4,10 +4,12 @@ function showFriendList(id) {
     $('#posts').hide()
     $('.friendsClass').addClass('active')
     $('.postClass').removeClass('active')
+    $('.friendList').show();
     $('#friends').show();
 }
 
 function showPosts(id) {
+    $('.friendList').hide();
     $('#friends').hide()
     $('.postClass').addClass('active')
     $('.friendsClass').removeClass('active')
@@ -30,7 +32,7 @@ function sendRequest(status, sender_id, receiver_id) {
 
 
 $(document).ready(function () {
-    $('#friends').hide()
+    $('.friendList').hide();
     $('#newPost').click(function () {
         $('#myModal').modal('show');
     })

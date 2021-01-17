@@ -43,6 +43,23 @@ class UserManager {
     }
 
     /**
+     * Find friends
+     */
+    public function findFriends(Request $request){
+        $friendList = json_decode($this->showFriends($request->get('id')));
+        $searchTerms = $parts = preg_split('/\s+/', $request->get('name'));
+        $founded = [];
+        foreach ($friendList as $friend) {
+            foreach ($searchTerms as $searchTerm) {
+                if (str_contains(strtolower($friend->name),strtolower($searchTerm)) || str_contains(strtolower($friend->surname),strtolower($searchTerm))) {
+                    $founded[] = $friend;
+                }
+            }
+        }
+        return json_encode($founded);
+    }
+
+    /**
      * Find users
      */
 

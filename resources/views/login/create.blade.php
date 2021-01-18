@@ -1,5 +1,5 @@
 @extends('login.layouts.app')
-<link rel="stylesheet" href="css/createAccount.css">
+<link rel="stylesheet" href="/css/createAccount.css">
 @section('content')
     <div class="limiter">
         <div class="container-login100">
